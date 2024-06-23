@@ -1,9 +1,12 @@
+// file system package
 const fs = require('fs');
+// retuiring inquirer package
 const inquirer = require('inquirer');
-const renderShape = require("./lib/shape")
-// const { default: Choice } = require('inquirer/lib/objects/choice');
+// requiring function from the path file
+const shape = require("./lib/shape.js")
 
 
+// getting iput from the user
 inquirer.prompt([
     {
         type :'input',
@@ -31,11 +34,11 @@ inquirer.prompt([
 ])
 .then((data)=>{
 
-    const myShape = renderShape(data);
+    const myShape = shape.renderShape(data);
 
+    console.log("... generating Log.svg file");
 // Writing to a file
-
       fs.writeFile('Logo.svg',`${myShape}\t`, (error) =>
-        error ? console.log(error) : console.log('Success'));
+        error ? console.log(error) : console.log('"Generated logo.svg"'));
 
 });
