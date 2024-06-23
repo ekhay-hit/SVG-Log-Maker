@@ -1,12 +1,13 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { default: Choice } = require('inquirer/lib/objects/choice');
+const renderShape = require("./lib/shape")
+// const { default: Choice } = require('inquirer/lib/objects/choice');
 
 
 inquirer.prompt([
     {
         type :'input',
-        message: "Enter up to three characters",
+        message: "Enter test for the log -up to three characters",
         name: 'logoName'
     },
     {
@@ -16,9 +17,9 @@ inquirer.prompt([
     },
     {
         type: 'list',
-        message: "Enter the logo's shape",
+        message: "Select the logo's shape",
         name: 'shape',
-        choices:['Circle','square','traingle']
+        choices:['circle','square','triangle']
     },
     {
         type:"input",
@@ -30,6 +31,11 @@ inquirer.prompt([
 ])
 .then((data)=>{
 
-    console.log(data);
+    const myShape = renderShape(data);
+
+// Writing to a file
+
+      fs.writeFile('Logo.svg',`${myShape}\t`, (error) =>
+        error ? console.log(error) : console.log('Success'));
 
 });
