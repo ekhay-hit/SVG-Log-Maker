@@ -33,12 +33,12 @@ inquirer.prompt([
 
 ])
 .then((data)=>{
-
+    // calling the function rendershape and assinging it to a varaible
     const myShape = shape.renderShape(data);
 
     console.log("... generating Log.svg file");
 // Writing to a file
       fs.writeFile('Logo.svg',`${myShape}\t`, (error) =>
-        error ? console.log(error) : console.log('"Generated logo.svg"'));
+        error ? console.log(error) : console.log('Generated logo.svg'));
 
 });
